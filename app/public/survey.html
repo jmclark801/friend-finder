@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Finder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/styles.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body id="body">
+  <header>
+    <h1 class="text-center">Welcome to the Friend-Finder Survey</h1>
+    <h2 class="text-center">Answer the Questions Below Honestly to Meet Your Soulmate</h2>
+    <h3 class="text-center">All Questions are on a scale of 1 to 5. </h3>
+  </header>
+  <div class="container">
+    <form>
+      <span>Please enter your first name: </span>
+      <input type="text" name="firstname" id="firstname"><br>
+      <span>1. I like long walks down dark alleys </span>
+      <span><br>
+        <select id="question1" name="question1">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>2. I'd jump out of an airplane </span>
+      <span>
+        <select id="question2" name="question2">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>3. I love naps </span>
+      <span>
+        <select id="question3" name="question3">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>4. I like cats </span>
+      <span>
+        <select id="question4" name="question4">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>5. I like dogs </span>
+      <span>
+        <select id="question5" name="question5">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>6. I like kids </span>
+      <span>
+        <select id="question6" name="question6">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>7. I'm close to my family </span>
+      <span>
+        <select id="question7" name="question7">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>8. I'm passionate about my work </span>
+      <span>
+        <select id="question8" name="question8">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>9. I love online quizzes </span>
+      <span>
+        <select id="question9" name="question9">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+      <span>10. People consider me funny </span>
+      <span>
+        <select id="question10" name="question10">
+          <option value="1">1 - No way!</option>
+          <option value="2">2 - Doesn't sound like me</option>
+          <option value="3">3 - Maaaaayyyybeee...</option>
+          <option value="4">4 - Sounds like me</option>
+          <option value="5">5 - True dat</option>
+        </select>
+      </span><br>
+  </div>
+  <button type="submit" class="btn btn-primary submit">Submit</button>
+  </form>
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+
+  // extra credit: add questions to a questions.js data file, use them to construct the page.
+
+
+  function getAnswers() {
+    var questionsCount = 10
+    var newFriend = {};
+    var newAnswers = [];
+    $('.submit').on('click', function (event) {
+      event.preventDefault();
+      for (var i = 1; i <= questionsCount; i++) {
+        newAnswers.push(parseInt($(`#question${i}`).val()));
+      }
+      newFriend = {
+        name: $("#firstname").val().trim(),
+        answers: newAnswers
+      }
+      // console.log(newFriend.name)
+      // console.log(newFriend.answers)
+      findFriend(newFriend);
+      newAnswers = [];
+    })
+  }
+
+  function findFriend(newFriend) {
+    // console.log(newFriend);
+    $.ajax({
+      url: '/api/friends',
+      method: 'get'
+    }).then(function (friends) {
+      var closestMatch;
+      var currentBestMatch;
+      var currentBestMatchScore = 100; // set to an arbitrary high number so any match is better than none.
+      var scoreTotal = 0;
+      //cycle through each friend.
+      friends.forEach(friend => {
+        scoreTotal = 0;
+        for (var i = 0; i < newFriend.answers.length; i++) {
+          scoreTotal += Math.abs(newFriend.answers[i] - friend.answers[i])
+        }
+        console.log(`Final score total is ${scoreTotal}`)
+        if (scoreTotal <= currentBestMatchScore) {
+          currentBestMatchScore = scoreTotal;
+          currentBestMatch = friend;
+        }
+      });
+      console.log(`Your soulmate is ${currentBestMatch.name} with a score of ${currentBestMatchScore}`)
+      addNewFriend(newFriend);
+    });
+  }
+
+  function addNewFriend(newFriend) {
+    console.log(`in addNewFriendFunction with my Friend ${newFriend.name}`);
+    $.post(
+      '/api/friends', newFriend, function (data) {
+        if (data) {
+          console.log(`Posting ${data} to the friends.js data file`)
+        }
+      }
+    ).then(function () {
+      console.log('data posted');
+    });
+    newFriend = {};
+  }
+
+  getAnswers();
+
+</script>
+
+</html>

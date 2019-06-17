@@ -17,12 +17,15 @@
     <h2 class="text-center">Answer the Questions Below to Meet Your Soulmate</h2>
     <h3 class="text-center">All Questions are on a scale of 1 to 5. </h3>
   </header>
+
   <div class="container">
     <form>
-      <span>Please enter your first name: </span>
-      <input type="text" name="firstname" id="firstname"><br>
-      <span>1. I like long walks down dark alleys </span>
-      <span><br>
+      <span class="question">Please enter your first name: </span>
+      <input class="answers" type="text" name="firstname" id="firstname"><br>
+      <span class="question">Please enter a photo URL: </span>
+      <input class="answers" type="text" name="photo" id="photo"><br>
+      <span class="question">1. I like long walks down dark alleys </span>
+      <span class="answers">
         <select id="question1" name="question1">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -31,8 +34,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>2. I'd jump out of an airplane </span>
-      <span>
+      <span class="question">2. I'd jump out of an airplane </span>
+      <span class="answers">
         <select id="question2" name="question2">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -41,8 +44,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>3. I love naps </span>
-      <span>
+      <span class="question">3. I love naps </span>
+      <span class="answers">
         <select id="question3" name="question3">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -51,8 +54,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>4. I like cats </span>
-      <span>
+      <span class="question">4. I like cats </span>
+      <span class="answers">
         <select id="question4" name="question4">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -61,8 +64,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>5. I like dogs </span>
-      <span>
+      <span class="question">5. I like dogs </span>
+      <span class="answers">
         <select id="question5" name="question5">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -71,8 +74,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>6. I like kids </span>
-      <span>
+      <span class="question">6. I like kids </span>
+      <span class="answers">
         <select id="question6" name="question6">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -81,8 +84,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>7. I'm close to my family </span>
-      <span>
+      <span class="question">7. I'm close to my family </span>
+      <span class="answers">
         <select id="question7" name="question7">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -91,8 +94,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>8. I'm passionate about my work </span>
-      <span>
+      <span class="question">8. I'm passionate about my work </span>
+      <span class="answers">
         <select id="question8" name="question8">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -101,8 +104,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>9. I love online quizzes </span>
-      <span>
+      <span class="question">9. I love online quizzes </span>
+      <span class="answers">
         <select id="question9" name="question9">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -111,8 +114,8 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
-      <span>10. People consider me funny </span>
-      <span>
+      <span class="question">10. People consider me funny </span>
+      <span class="answers">
         <select id="question10" name="question10">
           <option value="1">1 - No way!</option>
           <option value="2">2 - Doesn't sound like me</option>
@@ -121,8 +124,9 @@
           <option value="5">5 - True dat</option>
         </select>
       </span><br>
+      <button type="submit" id="button-form-submit" class="btn btn-secondary submit">Submit</button>
+
   </div>
-  <button type="submit" class="btn btn-primary submit">Submit</button>
   </form>
 
   <!-- Modal -->
@@ -132,12 +136,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modal-label">Meet your new best friend!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div id="modal-body">
-          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -145,7 +145,6 @@
       </div>
     </div>
   </div>
-
 </body>
 <script>
 
@@ -157,15 +156,18 @@
     var newAnswers = [];
     $('.submit').on('click', function (event) {
       event.preventDefault();
-      for (var i = 1; i <= questionsCount; i++) {
-        newAnswers.push(parseInt($(`#question${i}`).val()));
+      if ($('#firstname').val() != "" && $('#photo').val() != "") {
+        for (var i = 1; i <= questionsCount; i++) {
+          newAnswers.push(parseInt($(`#question${i}`).val()));
+        }
+        newFriend = {
+          name: $("#firstname").val().trim(),
+          photo: $("#photo").val().trim(),
+          answers: newAnswers
+        }
+        findFriend(newFriend);
+        newAnswers = [];
       }
-      newFriend = {
-        name: $("#firstname").val().trim(),
-        answers: newAnswers
-      }
-      findFriend(newFriend);
-      newAnswers = [];
     })
   }
 
@@ -190,7 +192,6 @@
           currentBestMatch = friend;
         }
       });
-      console.log(`Your soulmate is ${currentBestMatch.name} with a score of ${currentBestMatchScore}`)
       addNewFriend(newFriend);
       var matchingFriend = $("#modal-body");
       var friendDetail = $("<div class='list-group-item mt-4'></div>");
@@ -218,4 +219,5 @@
   getAnswers();
 
 </script>
+
 </html>

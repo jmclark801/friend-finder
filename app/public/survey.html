@@ -6,7 +6,7 @@
   <title>Friend Finder</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="./assets/styles.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
@@ -14,7 +14,7 @@
 <body id="body">
   <header>
     <h1 class="text-center">Welcome to the Friend-Finder Survey</h1>
-    <h2 class="text-center">Answer the Questions Below Honestly to Meet Your Soulmate</h2>
+    <h2 class="text-center">Answer the Questions Below to Meet Your Soulmate</h2>
     <h3 class="text-center">All Questions are on a scale of 1 to 5. </h3>
   </header>
   <div class="container">
@@ -125,27 +125,22 @@
   <button type="submit" class="btn btn-primary submit">Submit</button>
   </form>
 
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="closestMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="modal-label">Meet your new best friend!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          ...
+        <div id="modal-body">
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -154,8 +149,7 @@
 </body>
 <script>
 
-  // extra credit: add questions to a questions.js data file, use them to construct the page.
-
+  // To Do: add questions to a questions.js data file, use them to construct the page.
 
   function getAnswers() {
     var questionsCount = 10
@@ -170,15 +164,12 @@
         name: $("#firstname").val().trim(),
         answers: newAnswers
       }
-      // console.log(newFriend.name)
-      // console.log(newFriend.answers)
       findFriend(newFriend);
       newAnswers = [];
     })
   }
 
   function findFriend(newFriend) {
-    // console.log(newFriend);
     $.ajax({
       url: '/api/friends',
       method: 'get'
@@ -190,10 +181,10 @@
       //cycle through each friend.
       friends.forEach(friend => {
         scoreTotal = 0;
+        // for each friend, compare each answer and add the difference to scoreTotal. 
         for (var i = 0; i < newFriend.answers.length; i++) {
           scoreTotal += Math.abs(newFriend.answers[i] - friend.answers[i])
         }
-        console.log(`Final score total is ${scoreTotal}`)
         if (scoreTotal <= currentBestMatchScore) {
           currentBestMatchScore = scoreTotal;
           currentBestMatch = friend;
@@ -201,25 +192,30 @@
       });
       console.log(`Your soulmate is ${currentBestMatch.name} with a score of ${currentBestMatchScore}`)
       addNewFriend(newFriend);
+      var matchingFriend = $("#modal-body");
+      var friendDetail = $("<div class='list-group-item mt-4'></div>");
+      $(matchingFriend).empty();
+      friendDetail.append(
+        $("<h2>").text("Name: " + currentBestMatch.name),
+        $("<img>").attr("src", currentBestMatch.photo),
+      );
+      matchingFriend.append(friendDetail);
     });
   }
 
   function addNewFriend(newFriend) {
-    console.log(`in addNewFriendFunction with my Friend ${newFriend.name}`);
     $.post(
       '/api/friends', newFriend, function (data) {
         if (data) {
           console.log(`Posting ${data} to the friends.js data file`)
         }
       }
-    ).then(function () {
-      console.log('data posted');
-    });
+    );
+    $('#closestMatchModal').modal('show');
     newFriend = {};
   }
 
   getAnswers();
 
 </script>
-
 </html>

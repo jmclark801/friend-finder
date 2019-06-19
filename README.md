@@ -8,7 +8,7 @@ To access the app, simply go to https://friend-finder801.herokuapp.com/
 - The 'api view' is also available as a demo of a functional api.
 # Screenshots
 
-![](./app/public/assets/images/homepageSceenshot.png)
+![](./app/public/assets/images/homepageScreenshot.png)
 
 # Technologies Used
 - Node 
